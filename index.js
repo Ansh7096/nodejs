@@ -21,16 +21,29 @@
 
 const fs= require('fs');
 const path= require('path');
-const dirPath= path.join(__dirname,'files');
-// for(i=0;i<4;i++)
-// {
-//     fs.writeFileSync(dirPath+"/hello"+i+".txt","a simple txt file - fbc" );
-//     //fs.writeFileSync(`apple${i}.txt`,"a simple txt file - fbc" );
-// }
-fs.readdir(dirPath,(err,files)=>{
-    files.forEach((item)=>
-    {
-        console.log("file name is ",item);
-    })
-    if(err)console.log("Invalid access")
+const dirPath= path.join(__dirname,'crud');
+// // for(i=0;i<4;i++)
+// // {
+// //     fs.writeFileSync(dirPath+"/hello"+i+".txt","a simple txt file - fbc" );
+// //     //fs.writeFileSync(`apple${i}.txt`,"a simple txt file - fbc" );
+// // }
+// fs.readdir(dirPath,(err,files)=>{
+//     files.forEach((item)=>
+//     {
+//         console.log("file name is ",item);
+//     })
+//     if(err)console.log("Invalid access")
+// })
+const filePath= `${dirPath}/apple.txt`;
+// fs.writeFileSync(filePath,'hii I am AG');
+// fs.readFile(filePath,'utf8',(err,item)=>{
+
+//     console.log(item);
+// })
+fs.appendFile(filePath,' and file name is apple.txt',(err)=>{
+    if(!err)console.log("file is done");
 })
+fs.rename(filePath,`${dirPath}/veg.txt`,(err)=>{
+    if(!err)console.log("File name is updated");
+})
+fs.unlinkSync(`${dirPath}/veg.txt`);
