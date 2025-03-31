@@ -54,3 +54,6 @@ setTimeout(()=>{
     b=20;
 },2000);
 console.log(a+b);
+
+//This is the drawback of async programming language
+
