@@ -1,7 +1,6 @@
-import chalk from 'chalk';
 
-console.log(chalk.blue('Hello world!'));
 console.log("hello");
+console.log(10+20);
 // const chalk = require('chalk');
 
 // console.log(chalk.blue('Hello world!'));
