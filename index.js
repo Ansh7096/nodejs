@@ -78,11 +78,34 @@
 const express= require('express');
 const app= express();
 app.get('',(req,resp)=>{
-    resp.send('Hello, this is home page');
+    resp.send(`<h1>Hello, this is home page</h1>
+        <a href="/about">Go to About Page</a>
+        <a href="/help">Go to Help Page</a>`);
 });
 
 app.get('/about',(req,resp)=>{
-    resp.send('Hello, this is About page');
+    resp.send(`
+        <input type="text" placeholder="Username" value="${req.query.name}"/>
+        <button>Click Me!!!</button>
+        <a href="/">Go to Home Page</a>
+        <a href="/help">Go to Help Page</a>
+        `);
+});
+app.get('/help',(req,resp)=>{
+    resp.send([
+        {
+            name: 'Anshika',
+            email: 'ansh@love.com'
+        },
+        {
+            name: 'Ansh',
+            email: 'anshika@love.com'
+        },
+        {
+            name: 'Agv',
+            email: 'a@love.com'
+        }
+    ]);
 });
 
 app.listen(5000);
