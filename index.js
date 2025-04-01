@@ -62,13 +62,27 @@
 
 //This is the drawback of async programming language
 
-console.log("starting up")
-setTimeout(() => {
-    console.log("2 second log");
-}, 2000)
-setTimeout(() => {
-    console.log("0 second log");
-}, 0)
-console.log("finishing up")
-// Call stack --> Node API 
-//      Callback Queue
+// console.log("starting up")
+// setTimeout(() => {
+//     console.log("2 second log");
+// }, 2000)
+// setTimeout(() => {
+//     console.log("0 second log");
+// }, 0)
+// console.log("finishing up")
+// // Call stack --> Node API 
+// //      Callback Queue
+
+
+// Express Js is a framework of Node JS
+const express= require('express');
+const app= express();
+app.get('',(req,resp)=>{
+    resp.send('Hello, this is home page');
+});
+
+app.get('/about',(req,resp)=>{
+    resp.send('Hello, this is About page');
+});
+
+app.listen(5000);
