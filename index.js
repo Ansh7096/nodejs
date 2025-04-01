@@ -47,18 +47,28 @@
 //     if(!err)console.log("File name is updated");
 // })
 // fs.unlinkSync(`${dirPath}/veg.txt`);
-let a=10;
-let b=0;
+// let a=10;
+// let b=0;
 
-let waitingData= new Promise((resolve,reject)=>{
-    setTimeout(()=>{
-        resolve(30);
-    },2000);
-})
-waitingData.then((data)=>{
-    b=data;
-    console.log(a+b);
-})
+// let waitingData= new Promise((resolve,reject)=>{
+//     setTimeout(()=>{
+//         resolve(30);
+//     },2000);
+// })
+// waitingData.then((data)=>{
+//     b=data;
+//     console.log(a+b);
+// })
 
 //This is the drawback of async programming language
 
+console.log("starting up")
+setTimeout(() => {
+    console.log("2 second log");
+}, 2000)
+setTimeout(() => {
+    console.log("0 second log");
+}, 0)
+console.log("finishing up")
+// Call stack --> Node API 
+//      Callback Queue
