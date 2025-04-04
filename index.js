@@ -110,40 +110,67 @@
 
 // app.listen(5000);
 
+// const express= require('express');
+// const path= require('path');
+
+// const app= express();
+// const publicPath= path.join(__dirname,'public');
+// app.set('view engine', 'ejs');
+// //app.use(express.static(publicPath));
+// app.get('',(_,resp)=>{
+//     resp.sendFile(`${publicPath}/index.html`);
+// })
+// app.get('/profile',(_,resp)=>{
+//     const user={
+//         name: 'AG stars',
+//         email: 'cc@gmail.com',
+//         city: 'Jaipur',
+//         skills: ['HTML','CSS','JavaScript','cpp','Java','Python'],
+
+//     }
+//     resp.render('profile',{user});
+// });
+// app.get('/login',(_,resp)=>{
+//     resp.render('login');
+// });
+// app.get('/about',(_,resp)=>{
+//     resp.sendFile(`${publicPath}/about.html`);
+// })
+// app.get('/home',(_,resp)=>{
+//     resp.sendFile(`${publicPath}/home.html`);
+// })
+// app.get('/*splat', (_, resp) => {
+//     resp.sendFile(path.join(publicPath, 'pnf.html'));
+// });
+
+
+
+
+// app.listen(5000);
+
+//Middlewares- functions that used as routes
+
 const express= require('express');
-const path= require('path');
-
 const app= express();
-const publicPath= path.join(__dirname,'public');
-app.set('view engine', 'ejs');
-//app.use(express.static(publicPath));
-app.get('',(_,resp)=>{
-    resp.sendFile(`${publicPath}/index.html`);
-})
-app.get('/profile',(_,resp)=>{
-    const user={
-        name: 'AG stars',
-        email: 'cc@gmail.com',
-        city: 'Jaipur',
-        skills: ['HTML','CSS','JavaScript','cpp','Java','Python'],
-
+const reqFilter= (req,resp,next)=>{
+    if(!req.query.age)
+    {
+        resp.send("Please provide age");
     }
-    resp.render('profile',{user});
-});
-app.get('/login',(_,resp)=>{
-    resp.render('login');
-});
-app.get('/about',(_,resp)=>{
-    resp.sendFile(`${publicPath}/about.html`);
+    else if(req.query.age<18)
+    {
+        resp.send("You are not allowed to access this page");
+    }
+    else
+    next();
+}
+app.use(reqFilter);
+
+app.get('/',(req,resp)=>{
+    resp.send('Welcome to home page');
 })
-app.get('/home',(_,resp)=>{
-    resp.sendFile(`${publicPath}/home.html`);
+app.get('/users',(req,resp)=>{
+    resp.send('Welcome to Users page');
 })
-app.get('/*splat', (_, resp) => {
-    resp.sendFile(path.join(publicPath, 'pnf.html'));
-});
-
-
-
 
 app.listen(5000);
