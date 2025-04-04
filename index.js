@@ -124,9 +124,14 @@ app.get('/profile',(_,resp)=>{
     const user={
         name: 'AG stars',
         email: 'cc@gmail.com',
-        city: 'Jaipur'
+        city: 'Jaipur',
+        skills: ['HTML','CSS','JavaScript','cpp','Java','Python'],
+
     }
     resp.render('profile',{user});
+});
+app.get('/login',(_,resp)=>{
+    resp.render('login');
 });
 app.get('/about',(_,resp)=>{
     resp.sendFile(`${publicPath}/about.html`);
