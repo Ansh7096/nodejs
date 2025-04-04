@@ -151,26 +151,37 @@
 //Middlewares- functions that used as routes
 
 const express= require('express');
+const reqFilter= require('./middleware');
 const app= express();
-const reqFilter= (req,resp,next)=>{
-    if(!req.query.age)
-    {
-        resp.send("Please provide age");
-    }
-    else if(req.query.age<18)
-    {
-        resp.send("You are not allowed to access this page");
-    }
-    else
-    next();
-}
-app.use(reqFilter);
 
+//app.use(reqFilter);
+
+// app.get('/',(req,resp)=>{
+//     resp.send('Welcome to home page');
+// })
+// app.get('/users',reqFilter, (req,resp)=>{
+//     resp.send('Welcome to Users page');
+// })
+
+// app.get('/about',reqFilter, (req,resp)=>{
+//     resp.send('Welcome to About page');
+// })
+const route= express.Router();
+route.use(reqFilter);
 app.get('/',(req,resp)=>{
     resp.send('Welcome to home page');
 })
-app.get('/users',(req,resp)=>{
+app.get('/users', (req,resp)=>{
     resp.send('Welcome to Users page');
 })
 
+route.get('/about', (req,resp)=>{
+    resp.send('Welcome to About page');
+})
+
+route.get('/contact', (req,resp)=>{
+    resp.send('Welcome to Contact page');
+})
+
+app.use('/',route);
 app.listen(5000);
